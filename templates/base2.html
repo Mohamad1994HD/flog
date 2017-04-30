@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>
+            Flog| {% block head_title %}{% endblock head_title %}
+        </title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> 
+
+
+    <style>
+        {% block style %}{% endblock style %}
+    </style>
+   {% block head_extra %}{% endblock head_extra %}
+    </head>
+    <body>
+        <div class='container'>
+            <ol class='breadcrumb'>
+                <li><a href="/posts">Home</a></li>
+                
+                <li class='pull-right'><a href={% url "posts:create" %}>+Add</a></li> 
+            
+            </ol>
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <script src="https://use.fontawesome.com/8102b4fe5d.js"></script>
+    {% block script %}{% endblock script %}
+    </body>
+</html>

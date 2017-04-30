@@ -1,0 +1,25 @@
+<style>
+   .banner-top-modified{
+	background:url({{ obj.image.url }});
+	min-height:600px;
+	background-size:cover;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	-ms-background-size:cover;
+	position:relative;
+}
+</style>
+<div class='banner'>
+        <div class="container">
+            <div class="banner-top-modified">
+                <div class="banner-text">
+                    <h2>Main Meal</h2>
+                    <h1>{{ obj }}</h1>
+                    <div class="banner-btn">
+                        <a href={{ obj.get_absolute_url }}>Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

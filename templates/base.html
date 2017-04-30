@@ -1,0 +1,86 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <meta property="fb:app_id" content="1888277261418042" />
+        <link rel='icon' href='{% static "images/icon.png" %}' >
+        <title>
+            Flog| {% block head_title %}{% endblock head_title %}
+        </title>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--
+<link href={% static "css/bootstrap.css" %} rel='stylesheet' type='text/css' />
+-->
+<!-- Base Style -->
+{% include "base_style.html" %}
+<!-- End of base style -->
+
+    {% block style %}{% endblock style %}
+
+    {% block head_extra %}{% endblock head_extra %}
+
+</head>
+
+<body>
+<!--
+<div class='overlay'>
+        <div class='overlay-content'>
+        i<img class='img-responsive' src={% static "images/logo-2.png" %} />
+        </div>
+    </div>
+-->
+
+    	<!--header-top-starts-->
+	<div class="header-top">
+		<div class="container">
+			<div class="head-main">
+				<a href='{% url "posts:index" %}'><img id='himg' src={% static "images/logo-2.png" %} alt="" /></a>
+			</div>
+		</div>
+	</div>
+	<!--header-top-end-->
+	<!--start-header-->
+	<div class="header">
+		<div class="container">
+			<div class="head">
+			<div class="navigation">
+				 <span class="menu"></span> 
+					<ul class="navig">
+						<li><a href='{% url "posts:index" %}'>Home</a></li>
+                        <li><a href='{% url "posts:list"  %}?q= '>Recipes</a></li>
+                        <li><a href='{% url "posts:list" %}?q=tip'>Tips & Tricks</a></li>
+
+				        {% if request.user.is_staff %}
+                        <li><a href={% url "posts:create" %}>+Add A Recipe</a></li> 
+                        <li><a href='{% url "logout" %}'>Log Out</a>
+                        {% endif %}	
+                    </ul>
+			</div>
+			<div class="header-right">
+                {% block header_extra %}{% endblock header_extra %}
+			</div>
+				<div class="clearfix"></div>
+			</div>
+			</div>
+		</div>	
+<br>
+	<!-- Page content -->
+<div class='container-fluid'>
+{% block content %}
+{% endblock content %}
+</div>
+<!-- End of page content -->
+
+<br />
+<!-- page footer -->
+{% include "footer.html" %}
+<!-- End of page footer -->
+
+<div id="fb-root"></div>
+
+<!-- base scripts -->
+{% include "base_scripts.html" %}
+<!-- end of base scripts -->
+
+{% block script %}
+{% endblock script %} 
+</body> 

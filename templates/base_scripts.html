@@ -1,0 +1,111 @@
+{% load staticfiles %}
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script src={% static "js/jquery.min.js" %}></script>
+<!--
+<script>
+              src="https://code.jquery.com/jquery-3.2.1.min.js"
+              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+              crossorigin="anonymous"></script>-->
+<!---- start-smoth-scrolling---->
+<script type="text/javascript" src={% static "js/move-top.js" %}></script>
+<script type="text/javascript" src={% static "js/easing.js" %}></script>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js">
+</script>
+-->
+<script>
+$(document).ready(function(){
+   /* 
+    jQuery.fn.center = function () {
+        this.css({
+        'position' : 'absolute',
+        'left' : '50%',
+        'top' : '50%',
+        'margin-left' : -$(this).outerWidth()/2,
+        'margin-top' : -$(this).outerHeight()/2
+        });
+    }
+
+    $(".overlay").show();
+    $(".overlay-content").show().center();
+
+    setTimeout(function(){    
+      $(".overlay").fadeOut();
+    }, 200); 
+*/    
+    console.log('Doc ready');
+    
+    $('.navig li a').removeClass('active');
+    var curr_page = location.href
+    $(".navig li a").each(function(){
+        var trgt_page = $(this).prop('href')
+        if (curr_page == trgt_page){
+           $(this).addClass('active') 
+           return true;
+        } 
+    })
+        
+   /*
+    $('.content-markdown').each(function(){
+        var content = $(this).text();
+        var markedContent = marked(content)
+        $(this).html(markedContent);
+    })
+
+    var titleInput = $('#id_title')
+    var contentInput = $('#id_content')
+    
+
+    setTitle(titleInput.val())
+    setContent(contentInput.val())
+
+    function setTitle(value){
+        $('#preview-title').text(value)
+    }
+    function setContent(value){
+        var markedContent = marked(value)
+        $('#preview-content').html(markedContent)
+        $('#preview-content img').each(function(){
+            $(this).addClass('img-responsive')
+        })
+    } 
+    titleInput.keyup(function(){
+        var newTitle = $(this).val()
+        setTitle(newTitle)
+    })
+    
+    contentInput.keyup(function(){
+        var newContent = $(this).val()
+        setContent(newContent)
+    })*/
+})
+</script>
+
+<!-- script-for-menu -->
+		<script>
+			$("span.menu").click(function(){
+				$(" ul.navig").slidetoggle("slow" , function(){
+				});
+			});
+		</script>
+<!-- script-for-menu -->
+

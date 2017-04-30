@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2></h2>
+    <p>Are you sure you want to delete?</p>
+    <p>{{ instance.title }}</p>
+    <form method='POST' action='.'> {% csrf_token %}
+        <input type='submit' method='submit' value='confirm' class='btn btn-danger'>
+        <a href={{ instance.get_absolute_url }} class='btn btn-default'>Cancel</a>
+    </form>
+{% endblock content %}

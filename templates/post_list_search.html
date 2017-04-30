@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header_extra %}
+    {% include "searchbar.html" %}
+{% endblock header_extra %}
+
+{% block content %}
+<div class='about'>
+    <div class='container'>
+        <div class='about-tre text-center'>
+            {% if object_list %}
+              {% include "post_list_render.html" with object_list=object_list %}
+            {% else %}
+              <h3>No search result found!</h3>
+            {% endif %}
+                  </div>
+    </div>
+</div>
+{% endblock content %}

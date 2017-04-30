@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block head_title %}A blog for Food{% endblock head_title %}
+{% load tagging_tags %}
+ 
+{% block content %}
+<div class='row'>
+<div class='col-sm-4 col-sm-offset-4'>
+    <form method='GET' action'.' >
+            <div class='input-group'>
+                <input class='form-control' type='text' name='q' placeholder='Search for reciepe' value='{{ request.GET.q }}' />
+                <span class='input-group-btn'>
+                    <button class='btn btn-default' type='submit'>
+                    Search <i class='fa fa-search' aria-hidden='true'></i>
+                    </button> 
+                </span>
+        </div>
+    </form>
+</div>
+</div>
+{% for obj in object_list %}
+    <div class="row">
+        <div class='col-span-12 text-center'>
+            <h3><a href={{ obj.get_absolute_url }}>{{ obj.title }}</a>
+             <small>
+                {{ obj.publish }}
+             </small>
+            </h3>
+            {% tags_for_object obj as tag_list %}
+            <p>
+            {% for t in tag_list %}
+               {{ t }}
+            {% endfor %}
+            </p>
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}

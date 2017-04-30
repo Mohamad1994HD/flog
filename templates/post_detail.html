@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load tagging_tags %}
+
+{% block head_extra %}
+
+        <meta property="fb:app_id" content="1888277261418042" />
+{% endblock head_extra %}
+
+
+{% block header_extra %}
+{% if request.user.is_authenticated %}
+            {% if instance.is_draft %}
+            <button class='btn btn-warning' disabled>Draft Post </button>
+            {% endif %}
+            Post
+            <a href='{% url "posts:edit" instance.slug %}'>Edit</a>
+            |<a href='{% url "posts:delete" instance.slug %}'>Delete</a>
+         {% endif  %}
+
+{% endblock header_extra %}
+
+{% block content %}
+<div class='row'>
+    <div class='about-one'>
+         <h2>{{ instance }}</h2> 
+             </div>
+</div>
+
+ <div class='row'>
+    <div class='col-sm-8 col-sm-offset-2 '>
+    {% if instance.image %}
+       <img src="{{ instance.image.url }}" class='center-block img-responsive' /> 
+    {% endif %}</div>
+   </div>
+ 
+    <hr />
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+   
+    <div >{{ instance.content|safe }}</div>
+    <hr /><br />
+    <p> TAGS: </p>    
+    {% include "tags.html" with instance=instance %}
+    {% if is_draft %}
+       <p>Draft post</p> 
+    {% endif %}
+<br />
+{% with uri=request.build_absolute_uri %}
+<div class='row'>
+    <div class="fb-like" data-href={{ uri }} data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+</div>
+<div class='row'>
+    <div class="fb-comments" data-href="{{ uri }}" data-numposts="5"></div>
+</div>
+{% endwith %}
+</div>
+</div>
+{% endblock content %}

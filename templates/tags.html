@@ -1,0 +1,8 @@
+{% load tagging_tags %}
+{% tags_for_object instance  as tag_list %}
+<div>
+    {% for t in tag_list %}
+       <p class='btn btn-default btn-sm' disabled>{{ t }}</p>
+    {% endfor %}
+</div>
+ 
