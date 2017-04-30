@@ -1,4 +1,5 @@
 flog/settings/local.py
+static/css/chocolat.css
 
 *.sqlite3
 # Byte-compiled / optimized / DLL files
