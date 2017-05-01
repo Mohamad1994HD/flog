@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = '*ca6!0q6e0_ivs&ylnp-q*9b(9y89e@#l8s(#svp7(rwx+emj-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd party
-    'storages',
     'tagging',
     'crispy_forms',
     'django_summernote',
@@ -124,10 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/' # origin of permanent static files
-STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn") # temporarly loc
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn") # temporarly loc
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
 
 STATICFILES_DIRS = [
@@ -135,9 +134,7 @@ STATICFILES_DIRS = [
     #'/var/www/static/',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-DROPBOX_OAUTH2_TOKEN = 'Y3L_2sNdM6AAAAAAAAAA3wYtpdSsFZMEDFsnSFJz424sl4-omjF3zyAwJaqGvp_F'
-DROPBOX_ROOT_PATH = 'flogapp'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # TAGGING SYSTEM SETTINGS
 FORCE_LOWERCASE_TAGS = False
