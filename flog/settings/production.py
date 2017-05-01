@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd party
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
+    'storages',
     'tagging',
     'crispy_forms',
     'django_summernote',
@@ -136,8 +136,8 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-
+DROPBOX_OAUTH2_TOKEN = 'Y3L_2sNdM6AAAAAAAAAA3wYtpdSsFZMEDFsnSFJz424sl4-omjF3zyAwJaqGvp_F'
+DROPBOX_ROOT_PATH = 'flogapp'
 
 # TAGGING SYSTEM SETTINGS
 FORCE_LOWERCASE_TAGS = False
