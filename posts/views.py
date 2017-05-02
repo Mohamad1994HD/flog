@@ -68,7 +68,7 @@ def post_detail(request, slug=None):
     return render(request, "post_detail.html", context)
 
 def post_create(request):
-    if not request.user.is_staff or not request.user.is_superuser:
+    if not (request.user.is_staff or request.user.is_superuser):
         return HttpResponseRedirect(reverse("posts:index"))
 
     form = PostForm(request.POST or None, request.FILES or None)
@@ -87,7 +87,7 @@ def post_create(request):
     return render(request, "post_form.html", context) 
 
 def post_edit(request, slug=None):
-    if not request.user.is_staff or not request.user.is_superuser:
+    if not (request.user.is_staff or request.user.is_superuser):
         return HttpResponseRedirect(reverse("posts:index"))
 
     instance = get_object_or_404(Post, slug=slug) 
@@ -106,7 +106,7 @@ def post_edit(request, slug=None):
     return render(request, "post_form.html", context)
 
 def post_delete(request, slug=None):
-    if not request.user.is_staff or not request.user.is_superuser:
+    if not (request.user.is_staff or request.user.is_superuser):
         return HttpResponseRedirect(reverse("posts:index"))
 
    
