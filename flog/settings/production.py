@@ -3,12 +3,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*ca6!0q6e0_ivs&ylnp-q*9b(9y89e@#l8s(#svp7(rwx+emj-'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -34,7 +29,7 @@ INSTALLED_APPS = [
     'accounts',
 ]
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,7 +121,7 @@ STATIC_URL = '/static/' # origin of permanent static files
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn") # temporarly loc
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+MEDIA_ROOT = '/home/mohdhd1994/projects/foodblog/flog/media' #os.path.join(os.path.dirname(BASE_DIR), "media")
 
 
 STATICFILES_DIRS = [
@@ -134,7 +129,6 @@ STATICFILES_DIRS = [
     #'/var/www/static/',
 ]
 
-#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # TAGGING SYSTEM SETTINGS
 FORCE_LOWERCASE_TAGS = False
