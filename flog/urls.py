@@ -15,11 +15,10 @@ handler404 = err_404_handler
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login_view, name='login'),
-    url(r'^logout/', logout_view, name='logout'), 
+    url(r'^logout/', logout_view, name='logout'),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^about/$', about_view, name='about'),
-    url(r'^', include('posts.urls', namespace='posts')), 
-    
+    url(r'^', include('posts.urls', namespace='posts')),
 ]
 
 # only during development
