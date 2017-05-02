@@ -10,7 +10,7 @@ from .forms import PostForm
 
 def index(request):
     qobj = Post.objects
-    if not request.user.is_staff or not request.user.is_superuser:
+    if not (request.user.is_staff or request.user.is_superuser):
         qs = qobj.active()
     else:
         qs = qobj.all()
@@ -40,7 +40,7 @@ def index(request):
 
 def post_list(request):
     qobj = Post.objects
-    if not request.user.is_staff or not request.user.is_superuser:
+    if not (request.user.is_staff or request.user.is_superuser):
         qs = qobj.active()
     else:
         qs = qobj.all()
