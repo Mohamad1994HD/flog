@@ -2,10 +2,10 @@
 {% load tagging_tags %}
 
 {% block head_extra %}
-
         <meta property="fb:app_id" content="1888277261418042" />
 {% endblock head_extra %}
 
+{% block head_title %}{{ instance|truncatechars:15 }}{% endblock head_title %}
 
 {% block header_extra %}
 {% if request.user.is_authenticated %}
