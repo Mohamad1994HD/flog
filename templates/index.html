@@ -5,6 +5,8 @@
 {% include "searchbar.html" %}
 {% endblock header_extra %}
 
+{% block head_title %}A blog for food{% endblock head_title %}
+
 {% block content %}
 
 {% include "banner.html" with obj=main_post %}
@@ -23,7 +25,7 @@
 					<div class="abt-1">
 						<h3>ABOUT US</h3>
 						<div class="abt-one">
-							<p>Quisque non tellus vitae mauris luctus aliquam sit amet id velit. Mauris ut dapibus nulla, a dictum neque.</p>
+						<p>It is just as relevant today as it was more than 20  years ago. We didn't know then that at only simple internet search, it will be succinct enough to cook something new today!</p>
 							<div class="a-btn">
 								<a href={% url "about" %}>Read More</a>
 							</div>
