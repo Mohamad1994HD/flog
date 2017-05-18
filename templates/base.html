@@ -1,19 +1,18 @@
 {% load staticfiles %}
 <html>
     <head>
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta property="fb:app_id" content="1888277261418042" />
         <link rel='icon' href='{% static "images/icon.png" %}' >
         <title>
             Flog| {% block head_title %}{% endblock head_title %}
         </title>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--
-<link href={% static "css/bootstrap.css" %} rel='stylesheet' type='text/css' />
--->
+<!--<link href={% static "css/bootstrap.css" %} rel='stylesheet' type='text/css' />-->
+
 <!-- Base Style -->
 {% include "base_style.html" %}
 <!-- End of base style -->
-
     {% block style %}{% endblock style %}
 
     {% block head_extra %}{% endblock head_extra %}
@@ -43,7 +42,7 @@
 		<div class="container">
 			<div class="head">
 			<div class="navigation">
-				 <span class="menu"></span> 
+				 <span class="menu"></span>
 					<ul class="navig">
 						<li><a href='{% url "posts:index" %}'>Home</a></li>
                         <li><a href='{% url "about" %}'>About</a></li>

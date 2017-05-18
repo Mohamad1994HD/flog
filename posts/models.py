@@ -10,6 +10,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.safestring import mark_safe
 from django.conf import settings
 
+<<<<<<< HEAD
+=======
+#from markdown_deux import markdown
+>>>>>>> b8def5d563ba17bc17ff48afba81655c84b3bf02
 
 from tagging.models import TaggedItem
 from tagging.fields import TagField
@@ -59,6 +63,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("posts:detail", kwargs={"slug":self.slug})
 
+#    def get_markdown(self):
+#        content = markdown(self.content)
+#        return mark_safe(content)    
     
     def is_draft(self):
         return self.draft
