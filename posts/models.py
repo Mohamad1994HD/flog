@@ -10,18 +10,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.safestring import mark_safe
 from django.conf import settings
 
-<<<<<<< HEAD
-=======
-#from markdown_deux import markdown
->>>>>>> b8def5d563ba17bc17ff48afba81655c84b3bf02
 
 from tagging.models import TaggedItem
 from tagging.fields import TagField
 
 def upload_location(instance, filename):
-    #PostModel = instance.__class__
-    #new_id = PostModel.objects.order_by("id").last().id + 1
-    #return "%s/%s" %(new_id, filename)
     return "%s/%s" %(instance, filename)
 
 class PostManager(models.Manager):
@@ -64,9 +57,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("posts:detail", kwargs={"slug":self.slug})
 
-#    def get_markdown(self):
-#        content = markdown(self.content)
-#        return mark_safe(content)    
     
     def is_draft(self):
         return self.draft
