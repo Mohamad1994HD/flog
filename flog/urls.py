@@ -2,10 +2,18 @@ from django.conf.urls import url, include, handler500, handler404
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
 
 from .views import about_view, err_404_handler, err_500_handler
 from accounts.views import (login_view, logout_view)
 
+from posts.models import Post
+# info dictionary
+info_dict = {
+    'queryset': Post.objects.active(),
+    'date_field': 'updated',
+}
 
 # ERROR handlers
 handler500 = err_500_handler
@@ -13,6 +21,10 @@ handler404 = err_404_handler
 
 # URL patterns
 urlpatterns = [
+    url(r'^sitemap\.xml$', sitemap,
+        {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.6)}},
+        name='django.contrib.sitemaps.views.sitemap'),
+
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
