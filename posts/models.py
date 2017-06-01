@@ -25,10 +25,11 @@ class PostManager(models.Manager):
     def active(self, *args, **kwargs):
         return super(PostManager, self).filter(draft=False)
     
-    def random(self, nelem=1):
-        qs = self.active()
-        l = [random.choice(qs) for i in range(nelem)]
-        return l
+    def random(self, *args, **kwargs):
+        return super(PostManager, self).order_by('?')
+
+    def random_active(self, *args, **kwargs):
+        return self.active().order_by('?')
 
 # Create your models here.
 class Post(models.Model):

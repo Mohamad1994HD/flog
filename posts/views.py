@@ -4,58 +4,78 @@ from django.core.urlresolvers import reverse
 from django.utils.timezone import localtime, now 
 from django.db.models import Q
 from django.conf import settings
+
 from .models import Post, create_slug
 from .forms import PostForm
-# Create your views here.
+from .utils import slice_ as sl
+
+
+def is_search(request=None):
+    return request.GET.get('q') 
+
+def get_search_result(qs=None, search_query=None):
+    qs = qs.filter(
+        Q(title__icontains=search_query)|
+        Q(content__icontains=search_query)|
+        Q(tags__icontains=search_query)
+    ).distinct()
+    context = {
+        "object_list":qs,
+#        "page_title": "Search for a recipe",
+    }
+    return context 
 
 def index(request):
     qobj = Post.objects
     if not (request.user.is_staff or request.user.is_superuser):
-        qs = qobj.active()
+        qs = qobj.random_active()
     else:
-        qs = qobj.all()
-     
-    search_query = request.GET.get('q')
+        qs = qobj.random()
+
+
+# search query exists     
+    search_query = is_search(request)
     if search_query:
-        qs = qs.filter(
-            Q(title__icontains=search_query)|
-            Q(content__icontains=search_query)|
-            Q(tags__icontains=search_query)
-        ).distinct()
-        context = {
-            "object_list":qs,
-#            "page_title": "Search for a recipe",
-        }
-        return render(request, "post_list_search.html", context)
-    tip_obj_lst = qs.filter(
+        context = get_search_result(qs, search_query)
+        return render(request, "post_list_search.html", context) 
+
+    tip_obj_qs = qs.filter(
                         Q(tags__icontains='tip')
                             ).distinct()
+    qs = qs.exclude(id__in=[o.id for o in tip_obj_qs])
     context = {
         "main_post":qs.first(),
-        "object_list":qs[:settings.INDEX_POST_MAX],
-        "rand_object_list": Post.objects.random(settings.INDEX_POST_MAX),
-        "tip_object_list": tip_obj_lst,
+        "object_list":sl(
+            qs, 
+            1, 
+            settings.INDEX_MAIN_MAX
+            ),
+        "rand_object_list": sl(
+            qs, 
+            settings.INDEX_MAIN_MAX+1, 
+            settings.INDEX_ARCHIEVE_MAX
+            ),
+        "tip_object_list": sl(
+            tip_obj_qs, 
+            0, 
+            settings.INDEX_TIP_MAX
+            )
     }
     return render(request, "index.html", context)
 
 def post_list(request):
     qobj = Post.objects
     if not (request.user.is_staff or request.user.is_superuser):
-        qs = qobj.active()
+        qs = qobj.random_active()
     else:
-        qs = qobj.all()
+        qs = qobj.random()
 
-    search_query = request.GET.get('q')
-    if search_query:
-        qs = qs.filter(
-            Q(title__icontains=search_query)|
-            Q(content__icontains=search_query)|
-            Q(tags__icontains=search_query)
-        ).distinct()
     context = {
-        "object_list": qs,
-#        "page_title": "Search for a recipe",
+        "object_list" : qs
     }
+    search_query = is_search(request)
+    if search_query:
+        context = get_search_result(qs, search_query)
 
     return render(request, "post_list_search.html", context) 
 
