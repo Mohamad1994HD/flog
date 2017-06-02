@@ -13,6 +13,7 @@ from posts.models import Post
 info_dict = {
     'queryset': Post.objects.active(),
     'date_field': 'updated',
+    'title_field': 'title', 
 }
 
 # ERROR handlers
