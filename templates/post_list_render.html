@@ -21,10 +21,10 @@
                                 | <button class='btn btn-info' disabled>Draft </button>
                                 {% endif %}
                                 {% endif %}
+                                | <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for obj %}
 </h3>
                                 {% include "tags.html" with instance=obj %}
 								<label>{{ obj.publish }}</label>
-                                <label>Views: {% get_hit_count for obj %}</label>
                                 </div></div>
                         {% if not forloop.counter0|divisibleby:2 %}
                          <div class='clearfix'></div> 
