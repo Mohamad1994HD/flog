@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'tagging',
     'crispy_forms',
     'django_summernote',
+    'hitcount',
     # custom apps
     'posts',
     'accounts',

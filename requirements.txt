@@ -10,3 +10,4 @@ pyparsing==2.2.0
 six==1.10.0
 gunicorn==19.7.0
 dj-database-url==0.4.2
+django-hitcount==1.2.2
