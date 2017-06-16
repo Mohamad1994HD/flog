@@ -5,6 +5,9 @@ from django.utils.timezone import localtime, now
 from django.db.models import Q
 from django.conf import settings
 
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
+
 from .models import Post, create_slug
 from .forms import PostForm
 from .utils import slice_ as sl
@@ -81,6 +84,10 @@ def post_list(request):
 
 def post_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
+
+    hit_count = HitCount.objects.get_for_object(instance)
+    hit_count_response = HitCountMixin.hit_count(request, hit_count)
+  
     context = {
         "instance": instance,
         "is_draft": instance.draft,

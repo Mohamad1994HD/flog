@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load hitcount_tags %}
+
 {% for obj in object_list %}
         {% with obj.get_absolute_url as obj_url %}
                         {% if forloop.counter0|divisibleby:2 %}
@@ -22,6 +24,7 @@
 </h3>
                                 {% include "tags.html" with instance=obj %}
 								<label>{{ obj.publish }}</label>
+                                <label>Views: {% get_hit_count for obj %}</label>
                                 </div></div>
                         {% if not forloop.counter0|divisibleby:2 %}
                          <div class='clearfix'></div> 
