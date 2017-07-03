@@ -12,9 +12,9 @@ from .views import (
 urlpatterns = [
     url(r'^$', index, name='index'), 
     url(r'^search/$', post_list, name='list'),
-    url(r'^create/$', post_create, name='create'),
-    url(r'^(?P<slug>[-\w]+)/$', post_detail, name='detail'),
-    url(r'^(?P<slug>[-\w]+)/edit/$', post_edit, name='edit'), 
-    url(r'^(?P<slug>[-\w]+)/delete/$', post_delete, name='delete'),
+    url(r'^posts/create/$', post_create, name='create'),
+    url(r'^posts/(?P<slug>[-\w]+)/$', post_detail, name='detail'),
+    url(r'^posts/(?P<slug>[-\w]+)/edit/$', post_edit, name='edit'), 
+    url(r'^posts/(?P<slug>[-\w]+)/delete/$', post_delete, name='delete'),
     
 ]

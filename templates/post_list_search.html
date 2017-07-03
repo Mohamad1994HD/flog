@@ -11,7 +11,7 @@
     <div class='container'>
         <div class='about-tre text-center'>
             {% if object_list %}
-              {% include "post_list_render.html" with object_list=object_list %}
+              {% include "post_list_render.html" with object_list=object_list include_user=True %}
             {% else %}
               <h3>No search result found!</h3>
             {% endif %}

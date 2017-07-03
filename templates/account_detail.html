@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header_extra %}
+        {% if request.user.is_superuser or request.user == user %}
+            <a class='btn btn-info' href="{% url 'accounts:edit' user.pk %}">Edit</a>
+        {% endif %}
+{% endblock header_extra %}
+
+{% block content %}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-6 col-sm-offset-3'>
+                <div class='row'>
+                    <h3 class='col-sm-offset-4'>{{ user.username }}</h3>
+                </div><br>
+                <div class='row'>
+                    <div class='col-sm-4'>
+                        <img src='
+                        {% if profile.image %}
+                            {{ profile.image.url }}
+                        {% else %}
+                           {% static "images/icon.png" %}
+                        {% endif %}
+                           ' class='img-responsive img-circle'>
+                    </div>
+                    
+                       <p>{{ profile.bio }}</p> 
+                </div><br>
+            </div>
+        </div><br>
+        <hr><br>
+        <div class='row'>
+            <div class='col-sm-8 col-sm-offset-2'>
+                <div class='row col-sm-offset-4'>
+                    <h3>Recipes</h3>
+                </div><br>
+                <div>
+                    {% include "post_list_render.html" with object_list=posts %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

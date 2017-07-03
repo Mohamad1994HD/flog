@@ -48,7 +48,12 @@ body a:hover{
 /*--Header-Starts--*/
 .navigation {
 	float: left;
+    width:100%;
 }
+p.oblique{
+    font-style:oblique;
+}
+
 .header-right {
 	float: right;
 }
@@ -88,12 +93,14 @@ ul.navig li span {
 }
 ul.navig li {
 	display: inline-block;
+    margin-left: 10px;
 }
 ul.navig li a {
     font-size: 1.07em;
     color: #3d1a1b;
     text-decoration: none;
-    padding-right: 30px;
+    margin-left:10px;
+    display:inline-block;
 }
 ul.navig li a:hover{
 	color:#999;
@@ -127,6 +134,7 @@ ul.navig li {
 	width: 100%;
 	margin:0;
 }
+
 ul.navig li a {
 	width: 100%;
 	font-weight: 600;
@@ -161,8 +169,9 @@ ul.navig li a.active{
 	color:#999;
 }
 .search-bar {
-    width: 120%;
+    width: 100%;
     float: right;
+    display:inline-block;
 }
 .search-bar input[type="text"] {
     width: 100%;
@@ -177,24 +186,25 @@ ul.navig li a.active{
     font-family: 'Raleway-Regular';
 }
 .search-bar input[type="submit"] {
+    display:inline-block;
     background: url(../images/search.png)no-repeat 0px 0px;
     outline: none;
     -webkit-appearance: none;
     border: 0;
     display: inline-block;
     vertical-align: -webkit-baseline-middle;
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 7px;
-    right: 1%;
+    position: relative;
+    width: 25px;
+    height:25px;
+    right: 2%;
+    margin-left:5px;
 }
 .header-right ul {
     padding: 0;
     margin: 0;
     position: absolute;
-    top: 11px;
-    right: 23%;
+    top: 10%;
+    right: 1%;
 }
 .header-right ul li {
     list-style: none;
@@ -222,6 +232,7 @@ ul.navig li a.active{
 .header-right ul li a span.fb{
 	background-position:0px 0px;
 }
+
 .header-right ul li a span.twit{
 	background-position:-16px 0px;
 }
@@ -1066,6 +1077,14 @@ ul.blog-ic {
 ul.navig {
     margin-top: 1.6%;
 }
+
+ul.navig li .navele {
+            margin:0 auto;
+            border:#aaa 1px solid;
+            width: 100px;
+            display: relative;
+        };
+
 .contact-bottom iframe {
     height: 290px;
 }
@@ -1165,7 +1184,7 @@ ul.navig {
 }
 ul.navig li a {
     font-size: 1em;
-	padding-right: 25px;
+	padding-right: 0px;
 }
 .abt-left h3 {
     font-size: 21px;

@@ -41,27 +41,39 @@
 	<div class="header">
 		<div class="container">
 			<div class="head">
-			<div class="navigation">
-				 <span class="menu"></span>
-					<ul class="navig">
-						<li><a href='{% url "posts:index" %}'>Home</a></li>
-                        <li><a href='{% url "about" %}'>About</a></li>
-                        <li><a href='{% url "posts:list"  %}?q= '>Recipes</a></li>
-                        <li><a href='{% url "posts:list" %}?q=tip'>Tips & Tricks</a></li>
+                <div class="navigation">
+                     <span class="menu"></span>
+                        <ul class="navig">
 
-				        {% if request.user.is_staff %}
-                        <li><a href={% url "posts:create" %}>+Add A Recipe</a></li> 
-                        <li><a href='{% url "logout" %}'>Log Out</a>
-                        {% endif %}	
-                    </ul>
-			</div>
-			<div class="header-right">
-                {% block header_extra %}{% endblock header_extra %}
-			</div>
-				<div class="clearfix"></div>
-			</div>
-			</div>
-		</div>	
+                            <li style='vertical-align:middle'><p class='oblique'>Let's cook</p>{% include "searchbar.html" %}</li>
+                            <li><a href='{% url "posts:list"  %}?q= '>Explore</a></li>
+                            <li><a href='{% url "posts:list" %}?q=tip'>Cooking tips</a></li>
+                            
+                            {% if not request.user.is_anonymous %}
+                         <div class="dropdown pull-right">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{{ request.user.username }}
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                              <li class="dropdown-header">Account</li>
+                              <li><a href="{{ request.user.profile.get_absolute_url }}">Profile</a></li>
+                              <li class="divider"></li>
+                              <li class="dropdown-header">Recipes</li>
+                              <li><a href={% url "posts:create" %}>Create</a></li>
+                              <li class="divider"></li>
+                              <li class="dropdown-header"> >_< </li>
+                              <li><a href={% url "accounts:logout" %}>logout</a></li>
+                            </ul>
+                          </div>
+                            {% else %}
+                                <li class='pull-right'><a href='{% url "accounts:login" %}'>login</a>|<a style='margin-left:0px;'href='{% url "accounts:signup" %}'>signup</a></li>
+                            {% endif %}
+                        </ul>
+                </div>
+
+                    <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>	
 <br>
 	<!-- Page content -->
 <div class='container-fluid'>

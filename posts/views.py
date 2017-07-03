@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.utils.timezone import localtime, now 
 from django.db.models import Q
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from hitcount.models import HitCount
 from hitcount.views import HitCountMixin
@@ -68,11 +69,15 @@ def index(request):
 
 def post_list(request):
     qobj = Post.objects
-    if not (request.user.is_staff or request.user.is_superuser):
+    if request.user.is_anonymous():
         qs = qobj.random_active()
     else:
-        qs = qobj.random()
-
+        qs = qobj.random() 
+#    if not (request.user.is_staff or request.user.is_superuser):
+#        qs = qobj.random_active()
+#    else:
+#        qs = qobj.random()
+#
     context = {
         "object_list" : qs
     }
@@ -94,13 +99,13 @@ def post_detail(request, slug=None):
     }
     return render(request, "post_detail.html", context)
 
+@login_required
 def post_create(request):
-    if not (request.user.is_staff or request.user.is_superuser):
-        return HttpResponseRedirect(reverse("posts:index"))
 
     form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False) # modify
+        instance.author = request.user
         instance.slug = create_slug(instance)
         if not instance.draft:
             instance.publish = localtime(now()).date()
@@ -109,15 +114,18 @@ def post_create(request):
 
     context = {
         "form":form,
-        "title": "Create a new yummy post"
+        "title": "Create a new recipe"
     } 
     return render(request, "post_form.html", context) 
 
+@login_required
 def post_edit(request, slug=None):
-    if not (request.user.is_staff or request.user.is_superuser):
+    
+    instance = get_object_or_404(Post, slug=slug) 
+    
+    if not instance.author == request.user:
         return HttpResponseRedirect(reverse("posts:index"))
 
-    instance = get_object_or_404(Post, slug=slug) 
     form = PostForm(request.POST or None,request.FILES or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
@@ -132,14 +140,14 @@ def post_edit(request, slug=None):
     }
     return render(request, "post_form.html", context)
 
+@login_required
 def post_delete(request, slug=None):
-    if not (request.user.is_staff or request.user.is_superuser):
-        return HttpResponseRedirect(reverse("posts:index"))
-
-   
 
     instance = get_object_or_404(Post, slug=slug)
-    
+
+    if not request.user == instance.author:
+        return HttpResponseRedirect(reverse("posts:index"))
+
     if request.method == 'POST':
         instance.delete()
         return HttpResponseRedirect(reverse("posts:list"))

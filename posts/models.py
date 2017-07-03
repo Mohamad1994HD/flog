@@ -10,9 +10,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.safestring import mark_safe
 from django.conf import settings
 
-
 from tagging.models import TaggedItem
 from tagging.fields import TagField
+
+
+
 
 def upload_location(instance, filename):
     return "%s/%s" %(instance, filename)

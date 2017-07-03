@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 {% block header_extra %}
-{% include "searchbar.html" %}
 {% endblock header_extra %}
 
 {% block head_title %}A blog for food{% endblock head_title %}
@@ -17,7 +16,7 @@
         <div class="about-main">
             <div class="col-md-8 about-left">
                <div class="about-tre">
-                    {% include "post_list_render.html" with object_list=object_list %}
+                    {% include "post_list_render.html" with object_list=object_list include_user=True %}
                </div>	
             </div>
 				
@@ -33,7 +32,7 @@
 					</div>
 					<div class="abt-2">
 						<h3>YOU MIGHT ALSO LIKE</h3>    
-                        {% for obj in rand_object_list%}
+                        {% for obj in rand_object_list %}
                             {% with obj.get_absolute_url as obj_url %}
                     		<div class="might-grid">
 								<div class="grid-might">

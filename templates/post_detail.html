@@ -12,14 +12,19 @@
             {% if instance.is_draft %}
             <button class='btn btn-warning' disabled>Draft Post </button>
             {% endif %}
-            Post
-            <a href='{% url "posts:edit" instance.slug %}'>Edit</a>
-            |<a href='{% url "posts:delete" instance.slug %}'>Delete</a>
+            {% if request.user == instance.author %}
+                <a href='{% url "posts:edit" instance.slug %}'>Edit</a>
+                |<a href='{% url "posts:delete" instance.slug %}'>Delete</a>
+            {% endif %}
          {% endif  %}
 
 {% endblock header_extra %}
 
 {% block content %}
+<div class='row'>
+    <h4>Author: <a href="{% url 'accounts:detail' instance.author.pk %}">{{ instance.author.username }}</a></h4>
+</div>
+
 <div class='row'>
     <div class='about-one'>
          <h2>{{ instance }}</h2> 

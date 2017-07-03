@@ -6,9 +6,9 @@ from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
 
 from .views import about_view, err_404_handler, err_500_handler
-from accounts.views import (login_view, logout_view)
 
 from posts.models import Post
+
 # info dictionary
 info_dict = {
     'queryset': Post.objects.active(),
@@ -27,8 +27,7 @@ urlpatterns = [
         name='django.contrib.sitemaps.views.sitemap'),
 
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', login_view, name='login'),
-    url(r'^logout/', logout_view, name='logout'),
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^about/$', about_view, name='about'),
     url(r'^', include('posts.urls', namespace='posts')),

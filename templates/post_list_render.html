@@ -3,19 +3,18 @@
 
 {% for obj in object_list %}
         {% with obj.get_absolute_url as obj_url %}
-                        {% if forloop.counter0|divisibleby:2 %}
-                         <div class="a-1">
-                        {% endif %}
-                        <div class="col-sm-6 " >
+                            {% if forloop.counter0|divisibleby:2 %}
+                             <div class="a-1">
+                            {% endif %}
+
+                        <div class="col-sm-6" >
+                
                         <div class="abt-left">
 								<a href={{ obj_url }}>
                         {% if obj.image %}
                          <img class="img-responsive" src="{{ obj.image.url }}" />
                         {% else %}
-                         <img class="img-responsive" src={% static "images/icon.png" %} alt="" />
-                        {% endif %}
-                       </a>
-								<h3><a href="{{ obj_url }}">{{ obj.title }}</a>
+                         <img class="img-responsive" src={% static "images/icon.png" %} alt="" /> {% endif %} </a> <h3><a href="{{ obj_url }}">{{ obj.title }}</a>
                                 {% if obj.is_draft %}
                                 {% if request.user.is_authenticated %}
                                 | <button class='btn btn-info' disabled>Draft </button>
@@ -24,12 +23,17 @@
                                 | <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for obj %}
 </h3>
                                 {% include "tags.html" with instance=obj %}
-								<label>{{ obj.publish }}</label>
+								<label>
+                                {% if include_user %} 
+                                by <a href="{% url 'accounts:detail' obj.author.pk %}">{{ obj.author.username }}</a>
+                                | 
+                                {% endif %}
+                                {{ obj.publish }}</label>
                                 </div></div>
-                        {% if not forloop.counter0|divisibleby:2 %}
-                         <div class='clearfix'></div> 
-                         </div>
-                       {% endif %}
+                            {% if not forloop.counter0|divisibleby:2 %}
+                             <div class='clearfix'></div> 
+                             </div>
+                            {% endif %}
      {% endwith %}
 {% endfor %}
  
