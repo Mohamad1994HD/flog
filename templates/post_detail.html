@@ -22,7 +22,7 @@
 
 {% block content %}
 <div class='row'>
-    <h4 class='col-sm-offset-3'>Author: <a href="{% url 'accounts:detail' instance.author.pk %}">{{ instance.author.username }}</a></h4>
+    <h4 class='col-sm-offset-3'>Author: <a href="{% url 'accounts:detail' instance.author.username %}">{{ instance.author.username }}</a></h4>
 </div>
 
 <div class='row'>
