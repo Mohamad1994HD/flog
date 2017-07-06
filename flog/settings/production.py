@@ -147,5 +147,15 @@ INDEX_TIP_MAX = 6
 # SUMMERNOTE CONFIG
 SUMMERNOTE_CONFIG = {
     'width': '100%',
+    'height': '800',
+
+    'toolbar': [
+        ['style', ['style']],
+        ['fontstyle', ['bold', 'italic', 'underline', 'clear', 'fontsize']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'height']],
+        ['insert', ['table', 'link', 'picture', 'hr']],
+    ], 
     #'attachement_upload_to': utils.upload_location,
 }
