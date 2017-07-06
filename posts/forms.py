@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
     tags = forms.CharField(
                             label='Keywords',
                             widget=forms.TextInput(
-                                attrs={'placeholder':'eg. rice, healthy, diet'}
+                                attrs={'placeholder':'eg. rice, healthy, tip'}
                             )  
                           )
     class Meta:

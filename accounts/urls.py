@@ -9,9 +9,10 @@ from .views import (
 )
 
 urlpatterns = [
-    url(r'^(?P<pk>\d+)/edit/$', account_edit, name='edit'),
-    url(r'^(?P<pk>\d+)/$', account_detail, name='detail'),
     url(r'^login/', account_login, name='login'),
     url(r'^logout/', account_logout, name='logout'),
     url(r'^signup/', account_register, name='signup'),
+
+    url(r'^(?P<username>\w+)/edit/$', account_edit, name='edit'),
+    url(r'^(?P<username>\w+)/$', account_detail, name='detail'),
 ]

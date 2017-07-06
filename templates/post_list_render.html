@@ -25,7 +25,7 @@
                                 {% include "tags.html" with instance=obj %}
 								<label>
                                 {% if include_user %} 
-                                by <a href="{% url 'accounts:detail' obj.author.pk %}">{{ obj.author.username }}</a>
+                                by <a href="{% url 'accounts:detail' obj.author.username %}">{{ obj.author.username }}</a>
                                 | 
                                 {% endif %}
                                 {{ obj.publish }}</label>

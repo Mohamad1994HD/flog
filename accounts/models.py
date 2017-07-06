@@ -26,7 +26,7 @@ class Profile(models.Model):
         return str(self.user.username) 
     
     def get_absolute_url(self):
-        return reverse("accounts:detail", kwargs={"pk":self.user.pk})
+        return reverse("accounts:detail", kwargs={"username":self.user.username})
 
 def create_user_profile(sender, instance, created, **kwargs):
     # check if first creation, assign a new profile

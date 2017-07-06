@@ -58,17 +58,24 @@ def account_logout(request):
     return redirect('/')
 
 
-def account_detail(request, pk=None):
-    user = get_object_or_404(User, id=pk)
+def account_detail(request, username=None):
+    user = get_object_or_404(User, username=username)
+    posts = user.post_set.all()
+    if not request.user == user:
+        posts = posts.filter(draft=False)
+
+    posts_len = len(posts)
+
     context = {
         'user': user,
         'profile': user.profile,
-        'posts': user.post_set.active(),
+        'posts': posts,
+        'nposts': posts_len,
     }
     return render(request, 'account_detail.html', context)
 
-def account_edit(request, pk=None):
-    user = get_object_or_404(User, id=pk)
+def account_edit(request, username=None):
+    user = get_object_or_404(User, username=username)
     if not (request.user == user):
         if not request.user.is_superuser:
             return HttpResponseRedirect(user.profile.get_absolute_url())
@@ -83,4 +90,4 @@ def account_edit(request, pk=None):
         "title": 'Edit profile',
     }
 
-    return render(request, "post_form.html", context)
+    return render(request, "account_form.html", context)

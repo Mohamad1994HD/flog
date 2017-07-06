@@ -46,6 +46,7 @@
                         <ul class="navig">
 
                             <li style='vertical-align:middle'><p class='oblique'>Let's cook</p>{% include "searchbar.html" %}</li>
+                            <li><a href='/'>Home</a></li>
                             <li><a href='{% url "posts:list"  %}?q= '>Explore</a></li>
                             <li><a href='{% url "posts:list" %}?q=tip'>Cooking tips</a></li>
                             
@@ -65,7 +66,7 @@
                             </ul>
                           </div>
                             {% else %}
-                                <li class='pull-right'><a href='{% url "accounts:login" %}'>login</a>|<a style='margin-left:0px;'href='{% url "accounts:signup" %}'>signup</a></li>
+                                <li class='pull-right'><a href='{% url "accounts:login" %}'><small>login</small></a> | <a style='margin-left:0px;'href='{% url "accounts:signup" %}'><small>signup</small></a></li>
                             {% endif %}
                         </ul>
                 </div>
@@ -77,6 +78,7 @@
 <br>
 	<!-- Page content -->
 <div class='container-fluid'>
+{% block header_extra %} {% endblock header_extra %}
 {% block content %}
 {% endblock content %}
 </div>

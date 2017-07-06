@@ -12,7 +12,7 @@
         <div class='row'>
             <div class='col-sm-6 col-sm-offset-3'>
                 <div class='row'>
-                    <h3 class='col-sm-offset-4'>{{ user.username }}</h3>
+                   <h3 class='col-sm-offset-4'>{{ user.username }} | <small><label>member since: {{ user.date_joined  }}</label></small>
                 </div><br>
                 <div class='row'>
                     <div class='col-sm-4'>
@@ -33,7 +33,7 @@
         <div class='row'>
             <div class='col-sm-8 col-sm-offset-2'>
                 <div class='row col-sm-offset-4'>
-                    <h3>Recipes</h3>
+                    <h3>Recipes: {{ nposts }}</h3>
                 </div><br>
                 <div>
                     {% include "post_list_render.html" with object_list=posts %}

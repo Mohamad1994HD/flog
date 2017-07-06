@@ -56,9 +56,16 @@ class UserRegisterForm(forms.ModelForm):
         return email
 
 class ProfileForm(forms.ModelForm):
+    bio = forms.CharField(
+        label='Biography',
+        widget=forms.Textarea(
+            attrs={'placeholder':'Something about me'}  
+        ), 
+        required=False,
+    )
     class Meta:
         model = Profile
         fields = [
-            'bio', 
             'image',
+            'bio', 
         ]

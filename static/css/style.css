@@ -102,6 +102,12 @@ ul.navig li a {
     margin-left:10px;
     display:inline-block;
 }
+
+.bordered {
+    border: 1px solid gray;
+    padding: 1px;
+    border-radius: 10px;
+}
 ul.navig li a:hover{
 	color:#999;
 }
