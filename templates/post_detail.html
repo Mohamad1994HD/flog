@@ -52,9 +52,6 @@
 <br />
 {% with uri=request.build_absolute_uri %}
 <div class='row'>
-    <div class="fb-like" data-href={{ uri }} data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-</div>
-<div class='row'>
     <div class="fb-comments" data-href="{{ uri }}" data-numposts="5"></div>
 </div>
 {% endwith %}
