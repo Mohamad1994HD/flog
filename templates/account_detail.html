@@ -3,7 +3,7 @@
 
 {% block header_extra %}
         {% if request.user.is_superuser or request.user == user %}
-            <a class='btn btn-info' href="{% url 'accounts:edit' user.pk %}">Edit</a>
+            <a class='btn btn-info' href="{% url 'accounts:edit' user.username %}">Edit</a>
         {% endif %}
 {% endblock header_extra %}
 
