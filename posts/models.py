@@ -13,9 +13,38 @@ from django.conf import settings
 from tagging.models import TaggedItem
 from tagging.fields import TagField
 
-
-
-
+#
+#class Translation(models.Model):
+#    post = models.ForeignKey(Post, null=False)
+#    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=False)
+#    
+#    lang = models.CharField(max_length=20)
+#
+#    title = models.CharField(max_length=120) 
+#    content = models.TextField()
+#    draft = models.BooleanField(default=False)
+#
+#    timestamp = models.DateField(auto_now=False, auto_now_add=True) 
+#    
+#    class Meta:
+#        ordering = ['-timestamp']
+#
+#    def __unicode__(self):
+#        return str(self.title)
+#    
+#    def __str__(self):
+#        return str(self.title)
+#    
+#    def is_draft(self):
+#        return self.draft
+#
+#    def get_absolute_url(self):
+#        kwargs = {
+#            "slug":self.slug,
+#            "lang":self.lang,
+#        }
+#        return reverse("posts:translation", kwargs=kwargs)
+#
 def upload_location(instance, filename):
     return "%s/%s" %(instance, filename)
 

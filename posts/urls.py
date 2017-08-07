@@ -17,4 +17,6 @@ urlpatterns = [
     url(r'^posts/(?P<slug>[-\w]+)/edit/$', post_edit, name='edit'), 
     url(r'^posts/(?P<slug>[-\w]+)/delete/$', post_delete, name='delete'),
     
+    url(r'^posts/(?P<slug>[-\w]+)/translation/(?P<lang>\w+)/$', post_delete, name='translation'),
+    
 ]
