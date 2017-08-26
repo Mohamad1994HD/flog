@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^login/', account_login, name='login'),
     url(r'^logout/', account_logout, name='logout'),
     url(r'^signup/', account_register, name='signup'),
+# social
+    url(r'^oauth/', include('social_django.urls', namespace='social')),  
 # account    
     url(r'^(?P<username>\w+)/edit/$', account_edit, name='edit'),
     url(r'^(?P<username>\w+)/$', account_detail, name='detail'),

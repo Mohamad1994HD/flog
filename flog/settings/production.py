@@ -159,3 +159,12 @@ SUMMERNOTE_CONFIG = {
     ], 
     #'attachement_upload_to': utils.upload_location,
 }
+
+#EMAIL
+
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('NOREPLY_EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('NOREPLY_EMAIL_PASS')
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'auto  <no-reply@foodbelieve.faith>'
