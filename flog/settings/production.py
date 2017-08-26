@@ -168,3 +168,26 @@ EMAIL_HOST_USER = os.environ.get('NOREPLY_EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('NOREPLY_EMAIL_PASS')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.environ.get('NOREPLY_EMAIL_DEFAULT')
+
+
+# SOCIAL
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('FACEBOOK_AUTH_KEY')  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('FACEBOOK_AUTH_SECRET') # App Secret
+SOCIAL_AUTH_URL_NAMESPACE = 'accounts:social'
+LOGIN_URL = 'accounts:login'
+LOGOUT_URL = 'accounts:logout'
+LOGIN_REDIRECT_URL = 'posts:index'
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+# extension
+    'accounts.pipelines.grab_profile_pic',
+#
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
